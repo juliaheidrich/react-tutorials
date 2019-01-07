@@ -2,8 +2,7 @@
 My first practical tutorial with React was build with this description:
 https://reactjs.org/tutorial/tutorial.html
 
-![test](https://raw.githubusercontent.com/juliaheidrich/react-tutorials/master/HelloWorld/xox-game/xox-game
--screenshot.png)
+![test](http://lmsotfy.com/so.png)
 
 ## Setup
 Install node.js and npm. Execute the following instructions 
