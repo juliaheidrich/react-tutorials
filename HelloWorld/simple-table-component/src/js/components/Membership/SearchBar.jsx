@@ -14,19 +14,12 @@ export default class SearchBar extends React.Component {
     }
 
     handleMembersOnly(e){
-        //console.log(e);
-        console.log("Blaaaa" + e.target.checked);
-        //console.log("Bluuuu"+this.props.membersOnly);
-
         this.props.onMembersOnlyChange(e.target.checked);
-        //this.props.onMembersOnlyChange(true);
     }
 
     render(){
         const filterText = this.props.filterText;
         const membersOnly = this.props.membersOnly;
-        //const membersOnlyCheckboxValue = this.props.membersOnly ? "checked" : "";
-        //console.log('Returrrnnn ' + membersOnlyCheckboxValue);
         return (
 
             <form>

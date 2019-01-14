@@ -11,25 +11,21 @@ export default class MembershipTable extends React.Component {
 
     constructor(props){
         super(props);
-        //const filterText =this.props.filterText;
         // state is usualy used for data that changes over time
         this.state = {
             filterText: '',
-            memberrows: [],
+            members: this.props.members,
             membersOnly: false
         };
 
         this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
         this.handleMembersOnly = this.handleMembersOnly.bind(this);
-
     }
 
     handleFilterTextChange(filterText){
         this.setState({
             filterText: filterText
         });
-
-
     }
 
     handleMembersOnly(membersOnly){
@@ -41,22 +37,15 @@ export default class MembershipTable extends React.Component {
     handleAddRow() {
         const randomName = Math.random().toString(36).substr(2, 5);
         const randomBoolean = Boolean(Math.round(Math.random()));
-
-        this.state.memberrows.push(
-            <MembershipTableRow
-                membername={randomName}
-                membership={randomBoolean} />
-        );
-
+        const newMemberToPush = {membername: randomName, membership: randomBoolean};
+        this.state.members.push(newMemberToPush);
         this.setState({
-            memberrows: this.state.memberrows // ist das richtig so?
+            members: this.state.members
         });
     }
 
     render(){
         const memberrows = this.state.memberrows;
-        console.log("Blubb"+this.state.filterText);
-        console.log(this.state.membersOnly);
         return(
             <div>
                 <Headline />
@@ -65,22 +54,12 @@ export default class MembershipTable extends React.Component {
                     membersOnly={this.state.membersOnly}
                     onFilterTextChange={this.handleFilterTextChange}
                     onMembersOnlyChange={this.handleMembersOnly} />
-                <AddRowButton onClick={() => this.handleAddRow()} />
+                <AddRowButton
+                    onClick={() => this.handleAddRow()} />
                 <FilteredTable
-                    members={this.props.members}
+                    members={this.state.members}
                     filterText={this.state.filterText}
                     membersOnly={this.state.membersOnly} />
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Membership</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {memberrows}
-                    </tbody>
-                </table>
             </div>
         );
     }

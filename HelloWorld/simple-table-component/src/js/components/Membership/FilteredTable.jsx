@@ -7,14 +7,19 @@ import AddRowButton from './Table/AddRowButton';
 import FilteredTable from './FilteredTable';
 
 export default class FilteredMembershipTable extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            members : this.props.members
+        }
+    }
+
     render(){
         const filterText = this.props.filterText;
         const membersOnly = this.props.membersOnly;
         const memberrows = [];
 
-        console.log("FilteredMembershipTable "+filterText);
-
-        this.props.members.forEach((member, index) => {
+        this.state.members.forEach((member, index) => {
             if(membersOnly && !member.membership){
                 return;
             }
@@ -31,17 +36,20 @@ export default class FilteredMembershipTable extends React.Component {
         });
 
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Membership</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {memberrows}
-                </tbody>
-            </table>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Membership</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {memberrows}
+                    </tbody>
+                </table>
+            </div>
+
         );
     }
 
